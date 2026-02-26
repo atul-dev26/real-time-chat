@@ -1,0 +1,279 @@
+/* Neumorphic Auth Styles - Scoped to Component */
+
+.login-auth-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--neu-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-family: inherit;
+    transition: background 0.3s ease;
+}
+
+.split-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 1400px;
+    width: 100%;
+    gap: 50px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    flex-shrink: 0;
+}
+
+.scene-container {
+    flex: 1;
+    height: 650px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 900px) {
+    .split-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .scene-container {
+        display: none;
+        /* Hide 3D on small screens to focus on login */
+    }
+}
+
+.login-card {
+    background: var(--neu-bg);
+    border-radius: 30px;
+    padding: 50px 40px;
+    box-shadow:
+        20px 20px 60px var(--neu-dark),
+        -20px -20px 60px var(--neu-light);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.neu-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 24px;
+    background: var(--neu-bg);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        8px 8px 16px var(--neu-dark),
+        -8px -8px 16px var(--neu-light);
+    transition: all 0.3s ease;
+}
+
+.neu-icon:hover {
+    box-shadow:
+        inset 4px 4px 10px var(--neu-dark),
+        inset -4px -4px 10px var(--neu-light);
+}
+
+.icon-inner {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neu-accent);
+}
+
+.icon-inner svg {
+    width: 100%;
+    height: 100%;
+}
+
+.login-header h2 {
+    color: var(--neu-text);
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.login-header p {
+    color: var(--neu-text-dim);
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.form-group {
+    margin-bottom: 28px;
+    position: relative;
+}
+
+.neu-input {
+    position: relative;
+    background: var(--neu-bg);
+    border-radius: 15px;
+    box-shadow:
+        inset 8px 8px 16px var(--neu-dark),
+        inset -8px -8px 16px var(--neu-light);
+    transition: all 0.3s ease;
+}
+
+.neu-input:focus-within {
+    box-shadow:
+        inset 4px 4px 8px var(--neu-dark),
+        inset -4px -4px 8px var(--neu-light);
+}
+
+.neu-input input {
+    width: 100%;
+    background: transparent !important;
+    border: none !important;
+    padding: 24px 20px 10px 55px !important;
+    color: var(--neu-text) !important;
+    font-size: 16px;
+    font-weight: 500;
+    outline: none;
+    box-shadow: none !important;
+}
+
+.neu-input label {
+    position: absolute;
+    left: 55px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--neu-text-dim);
+    font-size: 16px;
+    font-weight: 400;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 5;
+}
+
+.neu-input input:focus+label,
+.neu-input input:not(:placeholder-shown)+label {
+    top: 12px;
+    font-size: 11px;
+    color: var(--neu-accent);
+    transform: translateY(-50%);
+}
+
+.input-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--neu-text-dim);
+    transition: all 0.3s ease;
+}
+
+.input-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.neu-input:focus-within .input-icon {
+    color: var(--neu-accent);
+}
+
+.password-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--neu-bg);
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neu-text-dim);
+    box-shadow:
+        4px 4px 8px var(--neu-dark),
+        -4px -4px 8px var(--neu-light);
+    transition: all 0.3s ease;
+}
+
+.password-toggle:active {
+    box-shadow:
+        inset 2px 2px 5px var(--neu-dark),
+        inset -2px -2px 5px var(--neu-light);
+}
+
+.neu-button {
+    width: 100%;
+    background: var(--neu-bg);
+    border: none;
+    border-radius: 15px;
+    padding: 18px 32px;
+    color: var(--neu-text);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow:
+        8px 8px 20px var(--neu-dark),
+        -8px -8px 20px var(--neu-light);
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.neu-button:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        12px 12px 30px var(--neu-dark),
+        -12px -12px 30px var(--neu-light);
+}
+
+.neu-button:active {
+    box-shadow:
+        inset 4px 4px 10px var(--neu-dark),
+        inset -4px -4px 10px var(--neu-light);
+}
+
+.neu-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 30px;
+    color: var(--neu-text-dim);
+    font-size: 14px;
+}
+
+.signup-link span {
+    color: var(--neu-accent);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.signup-link span:hover {
+    color: var(--neu-text);
+}
+
+.error-msg {
+    color: var(--neu-error);
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 20px;
+    background: rgba(255, 59, 92, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+}

@@ -1,0 +1,120 @@
+here we are going to make a project that is real time chat and it is going to be my first java spring boot project 
+this project will include:
+--->
+User registration and jwt authentication
+Real time messaging using websocket
+offline/online status indicator
+message history stored in databse
+group chat support
+typing indicator
+message read reciepts
+file/image sharing avaiilability
+REST api for non real time operations
+
+Dependenices we are using in spring boot
+---->
+Spirng web (for rest api)
+spring websocket(for real time messaging)
+spring data JPA (for database)
+Spring security
+postgresql driver ( because we will use postgresql)
+lombok ( it reduces boilerplate code)
+validation ( it is for inpoupt validation)
+
+If we want to change the java version of the project we are doing but we have made diiferent java version in spring boot
+then we can easily change it in pom.xml where just change java 25 to java 17/21 whatever u want
+
+
+First of all we will make 6 folders to organize our project
+those are ---->
+model (this will store our database entities like user,messages) -- what data looks like
+repository (thos will handle databse operations) -- how to save/retrieve data
+service ( this will contain service logic and buisness logic) -- businnes logic and rules
+controller( this will handle https requests) -- how client interacts with our app
+config ( this will store config files like security websocket) --app settings and security
+dto( this will store data transfer object for request and response) -- ckean data format for api communication
+
+
+NOW WE WILL START THE PROJECT --->
+
+First we will make that what a user will look like in our chat application
+this will be made in model folder named as user.java
+then we will make Entity and user and use some annotations
+then inside user class we will make user fields
+these are -->
+Id 
+Username
+email
+password
+fullname
+profilepicture
+and then set its default status to be offline
+and set time by using localdatatimestamp to make is last seen and when account was created
+now we dont need random userstatus we just want offline.online,away only
+therefore we will make a user file that will define all this
+this will be in model folder  
+name it as userstatus.java and use ENUM class to define the type we want
+
+now we want our time to be created automaticaaly when we make the user account 
+therefore make a function that will create all that and we will use prepersist annotation that runs automatically before saving a new user to database
+put this function after the user fields 
+
+
+now we will create MESSAGE entity same in model folder as message.java
+add entity annotation and make a new entity as messages and now add message fields that are -->
+Id
+sender
+receiver
+content
+message type
+and set the isread parameter to initailly as false
+
+now we need to make enum class again to define what type of messages can be -- this enum class and definition helps frontend 
+to decide which thing to render according to message
+now add the timing of when message is sent or reccieved as automatically
+
+now it is time to configure databse connections
+we will add application properties folder wit some data 
+we will add just tose dependencies wic can store data and are under spring boot
+
+now its time to start our application for first time
+now when we will start our application it will sow a loin pae wit username and password-- which is of java web security dependency
+which we dont need so we will comment out the dependency
+and now wen we will run it will sow a witelabel error screen
+now tomcat will start on port 8080
+
+now its time to make userRepository wic will elp us in saving and retrieve data from database
+ere we will define some metods like findbyUsername, findbyEmail and also ceck if it is in database by usin boolean functions
+
+perfect now we will make dto classes which will elp and we use tem for api responses and requests
+because we dont want to expose our actual user identity directly
+
+now make a file in dto as reister request 
+ere we are kind of maskin our data and only takin 3--> username, email and password and also ceckin if it is not blank
+instead of accpetin raw user objects we accept reister request this does --> validates inout automatically, does not expose password, 
+keep our api clean and secure
+
+now we will make for loin request in dto folder also
+ere we define that users can loin usin bot username or email
+this will esentially andle loin user data
+
+now create a autResponse file in dto folder and it will contain te data which will be sent to te client after succesful registration
+it will ave --> jwt token, username, email, fullname, and message
+this is essential because after succesful loin we sent username and not password and jwt token in order to autenticate in future
+
+now in dto folder make a file as messageDTO which will be used to send and receive messages via api
+it will contain --> Id, senderId, senderusername, receiverId, receiverusername, content, type,timesaatamp and if it is read or not
+one question will be tat wy we need id and username bot --> it is because frontend needs username to display text and id for api calls
+
+now we will create Userservice becasue it is real buisness logic
+make a file in service folder as USerservice.java --> it will andle user reistration,loin and user manaement
+as we know service sits between controller(api) and database(repository)
+now add a metod tat will do this--> cecks is username already taken, same for email, set all fields from reister request and add te user in database
+and ten sends back user info and success message
+Remember the @PrePersist in User entity? When we call save(), it automatically sets createdAt and lastSeen
+now add a loin metod --> it will do --> tries to find by username,if not found tries by email,compares password( for now it does not suppport #in),
+sets user to online and updates last seen and ten save the database, and ten return succes message wit user info
+
+now in controller folder make a file as AutController which will andle ttps requests for reistration and loin as rest APIs
+use @RestController annotation tat andles rest APIs requests and return json and use @requestmappin annotation to tell tat all endpoint starts wit /api/aut
+and use @CrossOrigin annotation which allows frontend to call these apis from different port

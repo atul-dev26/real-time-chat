@@ -1,0 +1,40 @@
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--neu-bg);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        6px 6px 12px var(--neu-dark),
+        -6px -6px 12px var(--neu-light);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    color: var(--neu-text);
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+.theme-toggle:active {
+    box-shadow:
+        inset 4px 4px 8px var(--neu-dark),
+        inset -4px -4px 8px var(--neu-light);
+}
+
+.toggle-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.toggle-icon svg {
+    width: 100%;
+    height: 100%;
+}

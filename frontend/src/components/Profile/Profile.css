@@ -1,0 +1,109 @@
+.profile-auth-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background: var(--neu-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    font-family: inherit;
+    transition: background 0.3s ease;
+}
+
+.profile-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+.profile-card {
+    background: var(--neu-bg);
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow:
+        20px 20px 60px var(--neu-dark),
+        -20px -20px 60px var(--neu-light);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.profile-card h2 {
+    color: var(--neu-text);
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.avatar-item {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--neu-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow:
+        6px 6px 12px var(--neu-dark),
+        -6px -6px 12px var(--neu-light);
+    transition: all 0.3s ease;
+    padding: 5px;
+}
+
+.avatar-item:hover {
+    transform: scale(1.05);
+}
+
+.avatar-item.selected {
+    box-shadow:
+        inset 4px 4px 8px var(--neu-dark),
+        inset -4px -4px 8px var(--neu-light);
+    border: 3px solid var(--neu-accent);
+}
+
+.avatar-item img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-btn {
+    width: 100%;
+    background: var(--neu-bg);
+    border: none;
+    border-radius: 15px;
+    padding: 18px 32px;
+    color: var(--neu-text);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow:
+        8px 8px 20px var(--neu-dark),
+        -8px -8px 20px var(--neu-light);
+    transition: all 0.3s ease;
+}
+
+.profile-btn:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        12px 12px 30px var(--neu-dark),
+        -12px -12px 30px var(--neu-light);
+}
+
+.profile-btn:active {
+    box-shadow:
+        inset 4px 4px 10px var(--neu-dark),
+        inset -4px -4px 10px var(--neu-light);
+}
+
+.profile-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
